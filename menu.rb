@@ -2,6 +2,7 @@ require_relative "pizza.rb"
 
 class Menu
   attr_accessor :pizzas
+
   def initialize
     @pizzas = []
     @pizzas << Pizza.new(101, "Verdure", "Homemade grilled vegetables and fresh mushrooms on tomato sauce and mozzarella.", 9)
@@ -12,12 +13,19 @@ class Menu
     @pizzas << Pizza.new(106, "Americana", "Spicy pepperoni salami and tangy salsiccia sausage on homemade tomato sauce with mozzarella.", 9)
   end
 
-def print
-  puts "We have on our menu:"
+  def print
+    puts "We have on our menu:"
 
-  @pizzas.each do |pizza|
-    puts "#{pizza.number}: #{pizza.name} - #{pizza.ingredients}"
+    @pizzas.each do |pizza|
+      puts "#{pizza.number}: #{pizza.name} - #{pizza.ingredients}"
+    end
   end
- end
 
+  def make_choice
+
+    puts "Which pizza would you like?"
+      pizza_number = gets.chomp.to_i
+#The Array.find can be used on our array of pizza to check if there is a pizza with the same number as the customer entered.
+  @pizzas.find { |pizza| pizza.number == pizza_number}
+  end
 end

@@ -1,8 +1,9 @@
 require_relative "menu.rb"
-
-menu = Menu.new
+require_relative "order.rb"
 
 done = false
+order = Order.new
+menu = Menu.new
 
 puts "Hello, welcome to our pizza express delivery"
 
@@ -11,14 +12,18 @@ while not done
   puts "What can I do for you?"
   puts "1: Order a pizza"
   puts "2: Nothing"
+  puts "3: Check out (€#{order.value})" if order.value > 0
   puts "----------------------"
-
+#The if statement can also be used inline. In this case, everything before the if statement will only be done when it evaluates to true
 #get some input from the customer
   choice = gets.chomp.to_i
   case choice
     when 1
       puts "Let me show you the menu"
       menu.print
+      pizza = menu.make_choice
+      order.add(pizza)
+
     when 2
       done = true
     else
